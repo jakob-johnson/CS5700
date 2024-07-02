@@ -11,4 +11,12 @@ internal class EllipseTest {
         val expected = PI
         assertEquals(expected, testEllipse.getArea())
     }
+
+    fun test0Area(){
+        val testPoint1: Point = Point(0.0, 0.0)
+
+        assertFailsWith<IllegalArgumentException> { 
+            val testEllipse: Ellipse = Ellipse(testPoint1, 0.0, 0.0)
+        }
+    }
 }
