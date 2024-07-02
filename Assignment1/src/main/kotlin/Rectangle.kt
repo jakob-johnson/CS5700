@@ -1,3 +1,5 @@
+import kotlin.math.abs
+
 class Rectangle(
     private val p1: Point,
     private val p2: Point
@@ -18,7 +20,7 @@ class Rectangle(
         val (x1, y1) = p1.getPosition()
         val (x2, y2) = p2.getPosition()
 
-        return (y2 - y1)*(x2 - x1)
+        return abs((y2 - y1)*(x2 - x1))
     }
 
     fun move(x: Double, y: Double) {

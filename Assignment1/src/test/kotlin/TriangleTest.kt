@@ -61,5 +61,7 @@ internal class TriangleTest {
         testTriangle.move(1.0, 1.0)
 
         assertEquals(Pair(1.0, 1.0), testPoint1.getPosition())
+        assertEquals(Pair(1.0, 5.0), testPoint2.getPosition())
+        assertEquals(Pair(5.0, 1.0), testPoint3.getPosition())
     }
 }
