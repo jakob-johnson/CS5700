@@ -1,6 +1,6 @@
 import kotlin.math.abs
 
-class Ellipse(
+class Triangle(
     private val p1: Point,
     private val p2: Point,
     private val p3: Point,
