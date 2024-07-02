@@ -3,19 +3,19 @@ class Square(
     private val p2: Point
 ){
     init {
-        val (x1, y1) = this.p1.getPoints()
-        val (x2, y2) = this.p2.getPoints()
+        val (x1, y1) = this.p1.getPosition()
+        val (x2, y2) = this.p2.getPosition()
 
         require(x1 != x2 && y1 != y2) {"Square must have an area greater than 0"}
         require(x2 - x1 == y2 - y1) {"Square must have width == height"}
     }
     fun getPoints(): List<Pair<Double, Double>>{
-        val pointsList = listOf(this.p1.getPosition(), this.p2.getPosition())
+        return listOf(this.p1.getPosition(), this.p2.getPosition())
     }
 
     fun getArea(): Double{
-        val (x1, y1) = this.p1.getPoints()
-        val (x2, y2) = this.p2.getPoints()
+        val (x1, y1) = this.p1.getPosition()
+        val (x2, y2) = this.p2.getPosition()
 
         return (y2 - y1)*(x2 - x1)
     }

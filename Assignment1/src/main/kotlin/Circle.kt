@@ -1,6 +1,6 @@
 import kotlin.math.PI
 
-class Ellipse(
+class Circle(
     private val p: Point,
     private val r: Double,
 ){
@@ -8,7 +8,7 @@ class Ellipse(
         require(this.r > 0){"Ellipse cannot have an area of 0"}
     }
     fun getAttributes(): Pair<Point, Double>{
-        return Tripple(this.p, this.rx, this.ry)
+        return Pair(this.p, this.r)
     }
     
     fun getArea(): Double{

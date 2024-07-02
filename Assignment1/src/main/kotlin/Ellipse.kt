@@ -8,8 +8,8 @@ class Ellipse(
     init {
         require(this.rx > 0 && this.ry > 0){"Ellipse cannot have an area of 0"}
     }
-    fun getAttributes(): Tripple<Point, Double, Double>{
-        return Tripple(this.p, this.rx, this.ry)
+    fun getAttributes(): Triple<Point, Double, Double>{
+        return Triple(this.p, this.rx, this.ry)
     }
     
     fun getArea(): Double{
