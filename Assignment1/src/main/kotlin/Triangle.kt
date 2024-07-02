@@ -6,11 +6,7 @@ class Triangle(
     private val p3: Point,
 ){
     init {
-        val (x1, y1) = this.p1.getPosition()
-        val (x2, y2) = this.p2.getPosition()
-        val (x3, y3) = this.p3.getPosition()
-
-        require(!(x1 == x2 && x2 == x3) || !(y1 == y2 && y2 == y3)) {"Triangle must have area greater than 0"}
+        require(!(getArea() == 0.0)) {"Triangle must have area greater than 0"}
     }
 
     fun getPoints(): List<Pair<Double, Double>>{
