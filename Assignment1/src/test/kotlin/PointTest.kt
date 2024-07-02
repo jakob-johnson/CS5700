@@ -33,7 +33,6 @@ internal class PointTest {
         testPoint1.move(1.0, 1.0)
 
         assertNotEquals(testPoint1.getPosition(), testPoint2.getPosition())
-
     }
 
 }

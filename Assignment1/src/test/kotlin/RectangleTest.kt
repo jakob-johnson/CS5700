@@ -40,4 +40,17 @@ internal class RectangleTest {
         assertEquals(Pair(1.0, 5.0), testPoint2.getPosition())
     }
 
+    @Test
+    fun testAttributes(){
+        val testPoint1: Point = Point(2.0, 0.0)
+        val testPoint2: Point = Point(0.0, 4.0)
+
+
+        val testRectangle: Rectangle = Rectangle(testPoint1, testPoint2)
+
+        val expected = listOf(testPoint1.getPosition(), testPoint2.getPosition())
+
+        assertEquals(expected, testRectangle.getPoints())
+    }
+
 }

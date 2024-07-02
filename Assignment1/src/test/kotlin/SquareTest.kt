@@ -50,4 +50,18 @@ internal class SquareTest {
         assertEquals(Pair(5.0, 1.0), testPoint1.getPosition())
         assertEquals(Pair(1.0, 5.0), testPoint2.getPosition())
     }
+
+    @Test
+    fun testAttributes(){
+        val testPoint1: Point = Point(4.0, 0.0)
+        val testPoint2: Point = Point(0.0, 4.0)
+
+
+        val testSquare: Square = Square(testPoint1, testPoint2)
+
+        val expected = listOf(testPoint1.getPosition(), testPoint2.getPosition())
+
+        assertEquals(expected, testSquare.getPoints())
+    }
+
 }
