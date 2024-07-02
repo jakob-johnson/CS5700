@@ -5,17 +5,17 @@ class Circle(
     private val r: Double,
 ){
     init {
-        require(this.r > 0){"Ellipse cannot have an area of 0"}
+        require(r > 0){"Ellipse cannot have an area of 0"}
     }
     fun getAttributes(): Pair<Point, Double>{
-        return Pair(this.p, this.r)
+        return Pair(p, r)
     }
     
     fun getArea(): Double{
-        return PI * this.r * this.r
+        return PI * r * r
     }
 
     fun move(x: Double, y: Double){
-        this.p.move(x, y)
+        p.move(x, y)
     }
 }

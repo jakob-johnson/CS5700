@@ -6,17 +6,17 @@ class Ellipse(
     private val ry: Double
 ){
     init {
-        require(this.rx > 0 && this.ry > 0){"Ellipse cannot have an area of 0"}
+        require(rx > 0 && ry > 0){"Ellipse cannot have an area of 0"}
     }
     fun getAttributes(): Triple<Point, Double, Double>{
-        return Triple(this.p, this.rx, this.ry)
+        return Triple(p, rx, ry)
     }
     
     fun getArea(): Double{
-        return PI * this.rx * this.ry
+        return PI * rx * ry
     }
 
     fun move(x: Double, y: Double){
-        this.p.move(x, y)
+        p.move(x, y)
     }
 }
