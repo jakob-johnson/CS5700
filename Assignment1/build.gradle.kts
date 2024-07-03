@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.0.0" // Kotlin version to use
+    jacoco
     application
 }
 
@@ -23,4 +24,9 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
 }
