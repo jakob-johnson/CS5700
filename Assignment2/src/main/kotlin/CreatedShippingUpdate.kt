@@ -4,13 +4,12 @@ class CreatedShippingUpdate: ShippingUpdate {
     override val timeStamp: Long = 0
 
     override fun update(
-        shipment: Shipment?,
         updateType: String,
         shipmentId: String,
         updateTimeStamp: Long,
         otherInfo: String?
     ) {
-        val newShipment = Shipment("Created", shipmentId)
-        TrackingSimulator.addShipment(newShipment)
+        val shipment = Shipment("Created", shipmentId)
+        TrackingSimulator.addShipment(shipment)
     }
 }
