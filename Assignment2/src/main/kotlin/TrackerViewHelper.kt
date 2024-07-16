@@ -30,4 +30,8 @@ class TrackerViewHelper(
         shipmentExpectedDelivery = shipment.expectedDelivery
     }
 
+    fun unsub(){
+        shipment.unsubscribe(this)
+    }
+
 }

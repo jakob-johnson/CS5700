@@ -1,8 +1,6 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,22 +27,19 @@ fun App() {
     MaterialTheme {
         Column {
             Row {
-                TextField(shipmentIdSearch, onValueChange = {
-                    shipmentIdSearch = it
-                })
+                TextField(
+                    value = shipmentIdSearch,
+                    onValueChange = { shipmentIdSearch = it},
+                    modifier = Modifier.fillMaxWidth(fraction = 0.8f))
 
                 Button(onClick = {
                     TrackingSimulator.findShipment(shipmentIdSearch)?.let { TrackerViewHelper(it) }
                         ?.let { shipments.add(it) }
                     shipmentIdSearch = ""
-                }){
+                },
+                    modifier = Modifier.fillMaxWidth()
+                ){
                     Text("Search")
-                }
-
-                Button(onClick = {
-                    println(shipments[0].shipmentStatus)
-                }){
-                    Text("Check")
                 }
             }
             LazyColumn {
@@ -52,20 +47,29 @@ fun App() {
                     Column (modifier = Modifier
                         .padding(8.dp)
                         .border(1.dp, Color.Black, shape = RoundedCornerShape(4.dp))
-                        .padding(4.dp)){
+                        ){
                         Text("Tracking shipment: ${it.shipmentID}")
                         Text("Status: ${it.shipmentStatus}")
                         Text("Location: ${it.shipmentLocation}")
                         Text("Expected Delivery: ${Date(it.shipmentExpectedDelivery)}")
+                        Spacer(modifier = Modifier
+                            .padding(8.dp))
                         Text("Status Updates:")
                         it.shipmentUpdateHistory.forEach{ update ->
                             Text("Shipment went from ${update.previousStatus} to ${update.newStatus} at ${Date(update.timeStamp)}")
                         }
+                        Spacer(modifier = Modifier
+                            .padding(4.dp))
                         Text("Notes:")
                         it.shipmentNotes.forEach{ note ->
                             Text(note)
                         }
-
+                        Button(onClick = {
+                            it.unsub()
+                            shipments.remove(it)
+                        }){
+                            Text("Stop Tracking")
+                        }
                     }
                 }
             }

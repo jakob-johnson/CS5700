@@ -9,7 +9,7 @@ class CreatedShippingUpdate: ShippingUpdate {
         updateTimeStamp: Long,
         otherInfo: String?
     ) {
-        val shipment = Shipment("Created", shipmentId)
+        val shipment = Shipment(updateType, shipmentId)
         TrackingSimulator.addShipment(shipment)
     }
 }

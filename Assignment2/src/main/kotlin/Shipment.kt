@@ -29,7 +29,6 @@ class Shipment(
         subscribers.forEach {
             it.notify(this)
         }
-        println("Been notified")
     }
 
     fun addNotes(note: String){
