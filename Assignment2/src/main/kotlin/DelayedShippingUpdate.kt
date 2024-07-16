@@ -1,4 +1,4 @@
-class ShippedShippingUpdate: ShippingUpdate {
+class DelayedShippingUpdate: ShippingUpdate {
     override var previousStatus: String = ""
     override var newStatus: String = ""
     override var timeStamp: Long = 0

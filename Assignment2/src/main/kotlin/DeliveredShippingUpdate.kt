@@ -1,4 +1,4 @@
-class ShippedShippingUpdate: ShippingUpdate {
+class DeliveredShippingUpdate: ShippingUpdate {
     override var previousStatus: String = ""
     override var newStatus: String = ""
     override var timeStamp: Long = 0
@@ -18,10 +18,8 @@ class ShippedShippingUpdate: ShippingUpdate {
 
             //Shipment variables
             shipment.status = newStatus
-            if (otherInfo != null) {
-                shipment.expectedDelivery = otherInfo.toLong()
-            }
             shipment.updateHistory.add(this)
+            shipment.expectedDelivery = updateTimeStamp
         }
     }
 }

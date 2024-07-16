@@ -30,4 +30,5 @@ fun main() = application {
         App()
     }
 
+    TrackingSimulator.runSimulation()
 }
