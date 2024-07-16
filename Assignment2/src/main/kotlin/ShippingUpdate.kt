@@ -1,5 +1,3 @@
-import java.util.*
-
 interface ShippingUpdate{
     val previousStatus: String
     val newStatus: String
