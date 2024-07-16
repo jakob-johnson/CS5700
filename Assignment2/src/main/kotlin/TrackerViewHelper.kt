@@ -3,12 +3,31 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
 class TrackerViewHelper(
-    private val shipment: Shipment
-) {
+    private var shipment: Shipment
+): ShipmentObserver {
     val shipmentID by mutableStateOf(shipment.id)
-    val shipmentNotes by mutableStateOf(shipment.notes)
-    val shipmentUpdateHistory by mutableStateOf(shipment.updateHistory)
-    val shipmentExpectedDelivery by mutableStateOf(shipment.expectedDelivery)
-    val shipmentStatus by mutableStateOf(shipment.status)
+    var shipmentNotes by mutableStateOf(shipment.notes)
+        private set
+    var shipmentUpdateHistory by mutableStateOf(shipment.updateHistory)
+        private set
+    var shipmentExpectedDelivery by mutableStateOf(shipment.expectedDelivery)
+        private set
+    var shipmentStatus by mutableStateOf(shipment.status)
+        private set
+    var shipmentLocation by mutableStateOf(shipment.currentLocation)
+        private set
+
+    init {
+        shipment.subscribe(this)
+    }
+
+    override fun notify(shipment: Shipment){
+        this.shipment = shipment
+        shipmentNotes = shipment.notes
+        shipmentUpdateHistory = shipment.updateHistory
+        shipmentStatus = shipment.status
+        shipmentLocation = shipment.currentLocation
+        shipmentExpectedDelivery = shipment.expectedDelivery
+    }
 
 }

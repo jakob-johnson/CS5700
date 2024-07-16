@@ -30,10 +30,8 @@ object TrackingSimulator {
             val command = it.split(",")
             if (command.size == 3){
                 shippingUpdates[command[0]]?.update(command[0], command[1], command[2].toLong())
-                println("Command size 3")
             } else if (command.size == 4){
                 shippingUpdates[command[0]]?.update(command[0], command[1], command[2].toLong(), command[3])
-                println("Command size 4")
             }
             println(command)
             delay(1000)

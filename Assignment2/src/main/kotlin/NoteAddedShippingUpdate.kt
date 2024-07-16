@@ -20,7 +20,7 @@ class NoteAddedShippingUpdate: ShippingUpdate {
             shipment.status = newStatus
             shipment.updateHistory.add(this)
             if (otherInfo != null) {
-                shipment.notes.add(otherInfo)
+                shipment.addNotes(otherInfo)
             }
         }
     }
