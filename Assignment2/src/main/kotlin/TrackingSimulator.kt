@@ -1,7 +1,18 @@
+import kotlinx.coroutines.*
 import java.io.File
 
 object TrackingSimulator {
     private val shipments = mutableListOf<Shipment>()
+    private val shippingUpdates = mapOf(
+        Pair("created", CreatedShippingUpdate()),
+        Pair("shipped", ShippedShippingUpdate()),
+        Pair("location", LocationShippingUpdate()),
+        Pair("delayed", DelayedShippingUpdate()),
+        Pair("noteadded", NoteAddedShippingUpdate()),
+        Pair("lost", LostShippingUpdate()),
+        Pair("canceled", CanceledShippingUpdate()),
+        Pair("delivered", DeliveredShippingUpdate()),
+    )
 
     fun findShipment(id: String): Shipment? {
         val shipment: Shipment? = shipments.find { it.id == id }
@@ -12,24 +23,20 @@ object TrackingSimulator {
         shipments.add(shipment)
     }
 
-    fun runSimulation(){
-        File("src/main/resources/test.txt").forEachLine { println(it) }
+    suspend fun runSimulation() = coroutineScope {
+        val testLines: List<String> = File("src/main/resources/test.txt").readLines()
 
-        CreatedShippingUpdate().update("Created", "1001", 1999283774)
-        CreatedShippingUpdate().update("Created", "1002", 1999283774)
-        CreatedShippingUpdate().update("Created", "1003", 1999283774)
-
-        shipments.forEach{
-            println(it)
+        testLines.forEach{
+            val command = it.split(",")
+            if (command.size == 3){
+                shippingUpdates[command[0]]?.update(command[0], command[1], command[2].toLong())
+                println("Command size 3")
+            } else if (command.size == 4){
+                shippingUpdates[command[0]]?.update(command[0], command[1], command[2].toLong(), command[3])
+                println("Command size 4")
+            }
+            println(command)
+            delay(1000)
         }
-
-        findShipment("1001")?.updateHistory?.forEach{
-            println(it)
-        }
-
-        ShippedShippingUpdate().update("Shipping", "1001", 1999283999)
-        ShippedShippingUpdate().update("Shipping", "1002", 1999283999)
-
-
     }
 }
