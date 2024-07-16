@@ -33,7 +33,6 @@ object TrackingSimulator {
             } else if (command.size == 4){
                 shippingUpdates[command[0]]?.update(command[0], command[1], command[2].toLong(), command[3])
             }
-            //println(command)
             delay(1000)
         }
     }

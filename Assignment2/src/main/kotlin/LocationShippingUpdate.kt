@@ -19,7 +19,9 @@ class LocationShippingUpdate: ShippingUpdate {
             //Shipment variables
             shipment.status = newStatus
             shipment.updateHistory.add(this)
-            shipment.currentLocation = otherInfo.toString()
+            if (otherInfo != null) {
+                shipment.currentLocation = otherInfo
+            }
         }
     }
 }

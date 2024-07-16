@@ -1,7 +1,7 @@
 class CreatedShippingUpdate: ShippingUpdate {
     override val previousStatus: String = ""
     override val newStatus: String = ""
-    override val timeStamp: Long = 0
+    override var timeStamp: Long = 0
 
     override fun update(
         updateType: String,
@@ -11,5 +11,6 @@ class CreatedShippingUpdate: ShippingUpdate {
     ) {
         val shipment = Shipment(updateType, shipmentId)
         TrackingSimulator.addShipment(shipment)
+        timeStamp = updateTimeStamp
     }
 }

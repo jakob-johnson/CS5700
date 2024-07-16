@@ -18,7 +18,7 @@ class CanceledShippingUpdate: ShippingUpdate {
 
             //Shipment variables
             shipment.status = newStatus
-            shipment.updateHistory.add(this)
+            shipment.addUpdate(this)
             shipment.expectedDelivery = 0
         }
     }
