@@ -57,6 +57,15 @@ fun App() {
                         Text("Status: ${it.shipmentStatus}")
                         Text("Location: ${it.shipmentLocation}")
                         Text("Expected Delivery: ${Date(it.shipmentExpectedDelivery)}")
+                        Text("Status Updates:")
+                        it.shipmentUpdateHistory.forEach{ update ->
+                            Text("Shipment went from ${update.previousStatus} to ${update.newStatus} at ${Date(update.timeStamp)}")
+                        }
+                        Text("Notes:")
+                        it.shipmentNotes.forEach{ note ->
+                            Text(note)
+                        }
+
                     }
                 }
             }

@@ -11,6 +11,5 @@ class CreatedShippingUpdate: ShippingUpdate {
     ) {
         val shipment = Shipment("Created", shipmentId)
         TrackingSimulator.addShipment(shipment)
-        shipment.addUpdate(this)
     }
 }
