@@ -9,7 +9,7 @@ abstract class Shipment(
         }
     val notes = mutableListOf<String>()
     val updateHistory = mutableListOf<ShippingUpdate>()
-    var expectedDelivery: Long = 0
+    open var expectedDelivery: Long = 0
         set(value) {
             field = value
             notifySubs()
@@ -32,7 +32,7 @@ abstract class Shipment(
         subscribers.remove(observer)
     }
 
-    private fun notifySubs(){
+    internal fun notifySubs(){
         subscribers.forEach {
             it.notify(this)
         }
@@ -47,4 +47,9 @@ abstract class Shipment(
         updateHistory.add(update)
         notifySubs()
     }
+
+    fun getCreationTime(): Long{
+        return updateHistory[0].timeStamp
+    }
+
 }

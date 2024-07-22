@@ -25,6 +25,9 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.util.*
 
+const val DAYS1 =86400
+const val DAYS3 = 259200
+
 @Composable
 @Preview
 fun App() {
