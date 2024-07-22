@@ -2,6 +2,8 @@ import kotlinx.coroutines.*
 import java.io.File
 
 object TrackingSimulator {
+    val shipmentFactory = ShipmentFactory()
+
     private val shipments = mutableListOf<Shipment>()
     private val shippingUpdates = mapOf(
         Pair("created", CreatedShippingUpdate()),
@@ -30,6 +32,5 @@ object TrackingSimulator {
         } else if (command.size == 4){
             shippingUpdates[command[0]]?.update(command[0], command[1], command[2].toLong(), command[3])
         }
-
     }
 }

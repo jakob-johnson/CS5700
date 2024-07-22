@@ -9,8 +9,13 @@ class CreatedShippingUpdate: ShippingUpdate {
         updateTimeStamp: Long,
         otherInfo: String?
     ) {
-        val shipment = Shipment(updateType, shipmentId)
+        val shipment: Shipment = if (otherInfo != null) {
+            TrackingSimulator.shipmentFactory.createShipment(shipmentId, Shipment.ShipmentType.valueOf(otherInfo))
+        } else {
+            TrackingSimulator.shipmentFactory.createShipment(shipmentId, Shipment.ShipmentType.Standard)
+        }
         TrackingSimulator.addShipment(shipment)
+        shipment.addUpdate(this)
         timeStamp = updateTimeStamp
     }
 }
