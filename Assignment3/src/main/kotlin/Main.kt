@@ -21,7 +21,7 @@ import io.ktor.server.netty.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.io.File
 import java.util.*
 
@@ -66,7 +66,11 @@ fun App() {
                             .padding(8.dp))
                         Text("Status Updates:")
                         it.shipmentUpdateHistory.forEach{ update ->
-                            Text("Shipment went from ${update.previousStatus} to ${update.newStatus} at ${Date(update.timeStamp)}")
+                            if (update.previousStatus != ""){
+                                Text("Shipment went from ${update.previousStatus} to ${update.newStatus} at ${Date(update.timeStamp)}")
+                            } else {
+                                Text("Shipment was created at ${Date(update.timeStamp)}")
+                            }
                         }
                         Spacer(modifier = Modifier
                             .padding(4.dp))
@@ -88,13 +92,16 @@ fun App() {
 }
 
 fun main() =  application {
-    val coroutineScope = rememberCoroutineScope()
-    Window(onCloseRequest = ::exitApplication) {
-        App()
+    val applicationScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+
+    applicationScope.launch {
+        TrackingServer.startServer()
     }
 
-
-    coroutineScope.launch {
-        TrackingServer.startServer()
+    Window(onCloseRequest = {
+        applicationScope.cancel()
+        exitApplication()
+    }) {
+        App()
     }
 }
