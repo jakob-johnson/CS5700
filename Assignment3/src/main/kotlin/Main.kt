@@ -25,8 +25,8 @@ import kotlinx.coroutines.*
 import java.io.File
 import java.util.*
 
-const val DAYS1 =86400
-const val DAYS3 = 259200
+const val DAYS1 =86400000
+const val DAYS3 = 259200000
 
 @Composable
 @Preview
@@ -59,6 +59,7 @@ fun App() {
                         .border(1.dp, Color.Black, shape = RoundedCornerShape(4.dp))
                         ){
                         Text("Tracking shipment: ${it.shipmentID}")
+                        Text("Shipment type: ${it.shipmentType}")
                         Text("Status: ${it.shipmentStatus}")
                         Text("Location: ${it.shipmentLocation}")
                         Text("Expected Delivery: ${Date(it.shipmentExpectedDelivery)}")
