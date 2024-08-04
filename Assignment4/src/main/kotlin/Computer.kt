@@ -61,4 +61,16 @@ class Computer {
         cpuRunning = false
     }
 
+    fun incrementCounter(){
+        cpu.setP((cpu.p + 2u).toUShort())
+    }
+
+    fun modifyRegister(pos: Int, value: UByte){
+        cpu.updateRegister(pos, value)
+    }
+
+    fun getRegister(pos: Int): UByte {
+        return cpu.registers[pos]
+    }
+
 }
