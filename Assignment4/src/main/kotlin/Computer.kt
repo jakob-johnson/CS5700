@@ -83,4 +83,14 @@ class Computer {
         modifyRegister(pos, data)
     }
 
+    fun write(pos: Int){
+        val data = getRegister(pos)
+
+        if (cpu.m){
+            rom.write(cpu.a.toInt(), data)
+        } else{
+            ram.write(cpu.a.toInt(), data)
+        }
+    }
+
 }
