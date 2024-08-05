@@ -109,4 +109,42 @@ class Computer {
        return cpu.p
     }
 
+    fun setA(value: Int){
+        cpu.setA(value.toUShort())
+    }
+
+    fun setT(value: Int){
+        cpu.setT(value.toUByte())
+    }
+
+    fun getT(): UByte {
+        return cpu.t
+    }
+
+    fun convertBaseTen(value: Int) {
+        val data = getRegister(value)
+
+        val ones = data.rem(10u)
+        val tens = data.div(10u).rem(10u)
+        val hundreds = data.div(100u)
+
+        if (cpu.m){
+            rom.write(cpu.a.toInt() + 2, ones.toUByte())
+            rom.write(cpu.a.toInt() + 1, tens.toUByte())
+            rom.write(cpu.a.toInt(), hundreds.toUByte())
+        } else {
+            ram.write(cpu.a.toInt() + 2, ones.toUByte())
+            ram.write(cpu.a.toInt() + 1, tens.toUByte())
+            ram.write(cpu.a.toInt(), hundreds.toUByte())
+        }
+    }
+
+    fun draw(position: Int, x: Int, y: Int){
+         val value = getRegister(position)
+
+        ram.write(x * 8 + y, value)
+
+        screen.draw(x, y, value)
+    }
+
 }
