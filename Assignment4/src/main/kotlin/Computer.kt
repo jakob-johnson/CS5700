@@ -53,11 +53,11 @@ class Computer {
         timerRunning = false
     }
 
-    private fun startCpu(){
+    fun startCpu(){
         cpuRunning = true
     }
 
-    private fun stopCpu(){
+    fun stopCpu(){
         cpuRunning = false
     }
 
@@ -91,6 +91,22 @@ class Computer {
         } else{
             ram.write(cpu.a.toInt(), data)
         }
+    }
+
+    fun setP(value: Int){
+        if (value % 2 == 0){
+            cpu.setP(value.toUShort())
+        } else{
+            throw IllegalArgumentException("P needs to be even")
+        }
+    }
+
+    fun setM(){
+        cpu.setM(!cpu.m)
+    }
+
+    fun getP(): UShort{
+       return cpu.p
     }
 
 }
