@@ -73,4 +73,14 @@ class Computer {
         return cpu.registers[pos]
     }
 
+    fun read(pos: Int){
+        val data: UByte = if (cpu.m){
+            rom.read((cpu.a.toInt()))
+        } else {
+            ram.read(cpu.a.toInt())
+        }
+
+        modifyRegister(pos, data)
+    }
+
 }

@@ -1,4 +1,0 @@
-class ROMtest {
-
-    internal class
-}
