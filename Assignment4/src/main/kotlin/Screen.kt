@@ -23,6 +23,9 @@ class Screen {
     }
 
     fun getValue(register: Int): UByte {
+        if (register >= content.size){
+            throw IllegalArgumentException("Not in Screen Bounds")
+        }
         return content[register]
     }
 }

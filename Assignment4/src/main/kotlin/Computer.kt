@@ -69,10 +69,12 @@ class Computer {
 
     private fun stopTimer(){
         timerRunning = false
+
     }
 
     fun startCpu(){
         cpuRunning = true
+        startTimer()
     }
 
     fun stopCpu(){
@@ -83,6 +85,11 @@ class Computer {
         } catch (_: Exception){
             executor.shutdown()
         }
+    }
+
+    fun pauseCpu(){
+        cpuRunning = false
+        stopTimer()
     }
 
     fun incrementCounter(){
@@ -138,7 +145,6 @@ class Computer {
     }
 
     fun setA(value: Int){
-        println("VALUE: $value")
         cpu.setA(value.toUShort())
     }
 
@@ -173,7 +179,7 @@ class Computer {
     }
 
     fun draw(position: Int, x: Int, y: Int){
-         val value = getRegister(position)
+        val value = getRegister(position)
 
         ram.write(x * 8 + y, value)
 
