@@ -192,9 +192,17 @@ class Computer {
 
     @OptIn(ExperimentalUnsignedTypes::class)
     fun loadROM(){
-        println("Type in the path to the rom file:")
-        val romLocation = readln()
-        val file = File(romLocation).readBytes().map {it.toUByte()}.toUByteArray()
+        var file: UByteArray
+        while (true) {
+            println("Type in the path to the rom file:")
+            val romLocation = readln()
+            try {
+                file = File(romLocation).readBytes().map { it.toUByte() }.toUByteArray()
+                break
+            } catch (_: Exception){
+                println("Invalid input, please try again")
+            }
+        }
         rom.load(file)
     }
 
