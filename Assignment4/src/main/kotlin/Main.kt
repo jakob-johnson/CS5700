@@ -1,5 +1,8 @@
 package org.example
 
 fun main() {
-    println("Hello World!")
+    val computer = Computer()
+
+    computer.loadROM()
+    computer.startCpu()
 }

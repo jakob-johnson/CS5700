@@ -21,4 +21,8 @@ class Screen {
             }
         }
     }
+
+    fun getValue(register: Int): UByte {
+        return content[register]
+    }
 }
