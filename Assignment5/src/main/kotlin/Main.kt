@@ -7,4 +7,7 @@ fun main() {
     val floatVerifier = FloatingVerifier()
     println(floatVerifier.verify("0.0"))
 
+    val binaryVerifier = BinaryVerifier()
+    println(binaryVerifier.verify("1001"))
+    println(binaryVerifier.verify("100"))
 }
