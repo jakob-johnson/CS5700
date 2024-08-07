@@ -14,4 +14,8 @@ fun main() {
     val emailVerifier = EmailVerifier()
     println(emailVerifier.verify("Yo.Gabba@Gabba.co"))
     println(emailVerifier.verify("Yo.Gabba@Gabba..co"))
+
+    val passwordVerifier = PasswordVerifier()
+    println(passwordVerifier.verify("!Aa"))
+    println(passwordVerifier.verify("aSdFjk!lL"))
 }
