@@ -12,6 +12,7 @@ internal class EmailTest {
         assertTrue { verifier.verify("{}*\$.&\$*(@*\$%&.*&*") }
     }
 
+    @Test
     fun badEmail(){
         assertFalse { verifier.verify("") }
         assertFalse { verifier.verify("@b.c") }
@@ -22,5 +23,12 @@ internal class EmailTest {
         assertFalse { verifier.verify("App@le@b.c") }
         assertFalse { verifier.verify("App@le b.c") }
         assertFalse { verifier.verify("App@le.b.c") }
+        assertFalse { verifier.verify(" App@leb.c") }
+        assertFalse { verifier.verify("App@.lebc") }
+        assertFalse { verifier.verify("App@@leb.c") }
+        assertFalse { verifier.verify("App@ leb.c") }
+        assertFalse { verifier.verify("App@leb. c") }
+        assertFalse { verifier.verify("App@leb.@c") }
+        assertFalse { verifier.verify("App@leb..c") }
     }
 }
