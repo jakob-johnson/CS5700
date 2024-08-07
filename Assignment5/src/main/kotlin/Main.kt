@@ -1,5 +1,6 @@
 package org.example
 
 fun main() {
-    println("Hello World!")
+    val verifier = IntegerVerifier()
+    println(verifier.verify("0123"))
 }
