@@ -23,6 +23,8 @@ internal class BinaryTest {
         assertFalse { verifier.verify("01010100101101001101001101") }
         assertFalse { verifier.verify("10") }
         assertFalse { verifier.verify("10110") }
+        assertFalse { verifier.verify("10a110") }
+        assertFalse { verifier.verify("101a10") }
     }
 
 }

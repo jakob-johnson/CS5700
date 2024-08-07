@@ -23,5 +23,6 @@ internal class FloatTest {
         assertFalse { verifier.verify("0908.12.9083") }
         assertFalse { verifier.verify("908.12a9083") }
         assertFalse { verifier.verify("9a08.129083") }
+        assertFalse { verifier.verify("908.a129083") }
     }
 }

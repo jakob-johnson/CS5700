@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-internal class testInstructions {
+internal class InstructionsTest {
 
 
     @Test
@@ -180,9 +180,7 @@ internal class testInstructions {
     fun testConvertByteToAscii() {
         val computer = Computer()
         computer.instructions[0]?.executeInstruction(0u, 2u, computer)
-        //assertEquals(2u ,computer.getRegisterValue(1))
         computer.instructions[14]?.executeInstruction(16u, 16u, computer)
-        //  assertFailsWith<IndexOutOfBoundsException> { computer.instructions[1]?.executeInstruction(8u,100u, computer)}
         assertEquals(50u, computer.getRegister(1))
 
         computer.instructions[0]?.executeInstruction(0u, 14u, computer)
@@ -212,10 +210,5 @@ internal class testInstructions {
         assertEquals(2u, computer.getScreenValue(0, 0))
         assertEquals(6u, computer.getScreenValue(0, 1))
         assertFailsWith<IllegalArgumentException> { computer.getScreenValue(8, 8) }
-        //computer.instructions[0]?.executeInstruction(1u, 213u, computer)
-        //assertFailsWith<IllegalArgumentException> { computer.instructions[15]?.executeInstruction(1u, 1u, computer) }
-
-        // Showing if we attempt to draw out of bounds
-        //assertFailsWith<IllegalArgumentException> { computer.instructions[15]?.executeInstruction(1u, 196u, computer) }
     }
 }

@@ -10,4 +10,8 @@ fun main() {
     val binaryVerifier = BinaryVerifier()
     println(binaryVerifier.verify("1001"))
     println(binaryVerifier.verify("100"))
+
+    val emailVerifier = EmailVerifier()
+    println(emailVerifier.verify("Yo.Gabba@Gabba.co"))
+    println(emailVerifier.verify("Yo.Gabba@Gabba..co"))
 }
